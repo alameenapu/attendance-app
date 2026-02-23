@@ -32,6 +32,7 @@ export default function Home() {
             id: user.id,   // 🔥 VERY IMPORTANT
             name: email?.split("@")[0],
             email: email,
+            avatar_url: user.user_metadata.avatar_url,
           },
         ]);
       }

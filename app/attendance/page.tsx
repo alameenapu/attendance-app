@@ -209,6 +209,22 @@ export default function AttendancePage() {
     );
   }
 
+
+  let statusText = "";
+  let statusColor = "";
+
+  if (!todayRecord) {
+    statusText = "Tap to Time In";
+    statusColor = "text-green-400 drop-shadow-[0_0_6px_rgba(34,197,94,0.7)]";
+  } else if (!todayRecord.time_out) {
+    statusText = "Tap to Time Out";
+    statusColor = "text-red-400 drop-shadow-[0_0_6px_rgba(248,113,113,0.7)]";
+  } else {
+    statusText = "Attendance Completed";
+    statusColor = "text-blue-400 drop-shadow-[0_0_6px_rgba(96,165,250,0.7)]";
+  }
+
+
   return (
     <div className="h-screen bg-gradient-to-br from-[#0f0f13] via-[#12121a] to-[#0a0a0f] text-white flex overflow-hidden">
       {/* LEFT PANEL */}
@@ -257,12 +273,8 @@ export default function AttendancePage() {
               }}
             />
 
-            <p className="mt-4 text-sm text-gray-400 tracking-wide">
-              {!todayRecord
-                ? "Tap to Time In"
-                : !todayRecord.time_out
-                  ? "Tap to Time Out"
-                  : "Attendance Completed"}
+            <p className={`mt-4 text-sm tracking-wide font-medium ${statusColor}`}>
+              {statusText}
             </p>
           </div>
 
@@ -283,7 +295,7 @@ export default function AttendancePage() {
         {/* Logo Bottom */}
         <div className="flex justify-center pt-6 border-t border-white/5">
           <img
-            src="/company-logo.png"
+            src="/company-logo.jpg"
             alt="Company Logo"
             className="max-w-[140px] opacity-70"
           />

@@ -27,7 +27,7 @@ export default function Home() {
         .maybeSingle();
 
       if (!existing) {
-        await supabase.from("employees").insert([
+        const { error } = await supabase.from("employees").insert([
           {
             id: user.id,   // 🔥 VERY IMPORTANT
             name: email?.split("@")[0],
@@ -35,6 +35,10 @@ export default function Home() {
             avatar_url: user.user_metadata.avatar_url,
           },
         ]);
+        if (error) {
+          console.error("Insert failed:", error.message);
+          return;
+  }
       }
 
       router.replace("/attendance"); // safe redirect
@@ -47,3 +51,6 @@ export default function Home() {
 
   return null;
 }
+
+
+// https://attendance-app-ivory-three.vercel.app

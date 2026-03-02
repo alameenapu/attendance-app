@@ -226,9 +226,9 @@ export default function AttendancePage() {
 
 
   return (
-    <div className="h-screen bg-gradient-to-br from-[#0f0f13] via-[#12121a] to-[#0a0a0f] text-white flex overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f0f13] via-[#12121a] to-[#0a0a0f] text-white flex flex-col md:flex-row">
       {/* LEFT PANEL */}
-      <div className="w-[420px] bg-[#181821]/80 backdrop-blur-xl border-r border-white/5 p-8 flex flex-col justify-between">
+      <div className="w-full md:w-[420px] bg-[#181821]/80 backdrop-blur-xl border-b md:border-r border-white/5 p-8 flex flex-col justify-between">
 
         <div className="flex flex-col items-center">
 
@@ -304,7 +304,7 @@ export default function AttendancePage() {
 
 
       {/* RIGHT PANEL */}
-      <div className="flex-1 p-12 overflow-y-auto">
+      <div className="flex-1 p-6 md:p-12 overflow-y-auto">
 
         <h1 className="text-3xl font-bold mb-8 tracking-wide">
           Attendance Summary
@@ -317,7 +317,7 @@ export default function AttendancePage() {
               No attendance record for today.
             </p>
           ) : (
-            <div className="grid grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
 
               <div className="bg-[#23232d] p-6 rounded-xl">
                 <p className="text-gray-400 text-sm">Date</p>
@@ -364,3 +364,4 @@ export default function AttendancePage() {
     </div>
   );
 }
+

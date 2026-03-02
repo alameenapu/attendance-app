@@ -16,7 +16,9 @@ export default function AttendancePage() {
   const [loadingAttendance, setLoadingAttendance] = useState(true);
   const [currentTime, setCurrentTime] = useState<string>("");
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toLocaleDateString("en-CA", {
+    timeZone: "Asia/Dhaka",
+  });
 
   const isChecked = todayRecord && !todayRecord.time_out;
 
@@ -35,9 +37,17 @@ export default function AttendancePage() {
 
   // 🕒 Live clock
   useEffect(() => {
-    setCurrentTime(new Date().toLocaleString());
+    setCurrentTime(
+      new Date().toLocaleString("en-GB", {
+        timeZone: "Asia/Dhaka",
+      })
+    );
     const interval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleString());
+      setCurrentTime(
+        new Date().toLocaleString("en-GB", {
+          timeZone: "Asia/Dhaka",
+        })
+      );
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -328,7 +338,9 @@ export default function AttendancePage() {
                 <p className="text-gray-400 text-sm">Time In</p>
                 <p className="mt-2 text-lg font-semibold">
                   {todayRecord.time_in
-                    ? new Date(todayRecord.time_in).toLocaleTimeString()
+                      ? new Date(todayRecord.time_in).toLocaleTimeString("en-GB", {
+                        timeZone: "Asia/Dhaka",
+                      })
                     : "-"}
                 </p>
               </div>
@@ -337,7 +349,9 @@ export default function AttendancePage() {
                 <p className="text-gray-400 text-sm">Time Out</p>
                 <p className="mt-2 text-lg font-semibold">
                   {todayRecord.time_out
-                    ? new Date(todayRecord.time_out).toLocaleTimeString()
+                      ? new Date(todayRecord.time_out).toLocaleTimeString("en-GB", {
+                        timeZone: "Asia/Dhaka",
+                      })
                     : "-"}
                 </p>
               </div>
